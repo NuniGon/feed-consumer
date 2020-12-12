@@ -1,18 +1,19 @@
 package com.sparta.core;
 
-import com.sparta.model.Record;
+import com.sparta.model.LoadBatch;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayInputStream;
+import java.io.ObjectInput;
 import java.io.ObjectInputStream;
-import java.util.List;
 
 @Slf4j
 public class ProviderDeserializer {
-
-    public static final List<Record> deserializer(byte[] content) throws Exception {
-        ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(content));
-        List<Record> provider = (List<Record>) in.readObject();
+    
+    public static final LoadBatch deserializer(byte[] content) throws Exception {
+        ByteArrayInputStream bis = new ByteArrayInputStream(content);
+        ObjectInput in = new ObjectInputStream(bis);
+        LoadBatch provider = (LoadBatch) in.readObject();
         in.close();
 
         return provider;

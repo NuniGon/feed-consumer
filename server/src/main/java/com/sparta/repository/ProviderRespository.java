@@ -1,13 +1,11 @@
 package com.sparta.repository;
 
-import com.sparta.model.Record;
-
-import java.util.List;
+import com.sparta.model.LoadBatch;
 
 public interface ProviderRespository {
 
-    public List<Record> save(String provider, List<Record> records);
+    public LoadBatch save(LoadBatch provider);
 
-    public List<Record> findByProvider(String provider);
+    public LoadBatch findByProvider(String id);
 
 }

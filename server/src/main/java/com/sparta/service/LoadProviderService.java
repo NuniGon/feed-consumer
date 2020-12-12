@@ -1,8 +1,8 @@
 package com.sparta.service;
 
-import com.sparta.model.dto.TotalRecordsDTO;
+import com.sparta.model.LoadBatch;
 
 public interface LoadProviderService {
 
-    public TotalRecordsDTO save(String provider, byte[] content) throws Exception;
+    public LoadBatch save(String provider, byte[] content) throws Exception;
 }

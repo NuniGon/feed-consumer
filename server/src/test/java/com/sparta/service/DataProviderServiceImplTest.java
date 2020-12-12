@@ -2,9 +2,9 @@ package com.sparta.service;
 
 import com.sparta.SpartaApplication;
 import com.sparta.core.exceptions.SpartaNotFoundException;
+import com.sparta.model.LoadBatch;
 import com.sparta.model.Record;
 import com.sparta.model.Sensor;
-import com.sparta.model.dto.TotalRecordsDTO;
 import com.sparta.repository.ProviderRespository;
 import com.sparta.service.impl.DataProviderServiceImpl;
 import org.junit.Before;
@@ -36,7 +36,11 @@ public class DataProviderServiceImplTest {
 
     @Before
     public void initProvider() {
-        providerRespository.save(PROVIDER_DEFAULT, getRecordsList());
+        providerRespository.save(getLoadBathc());
+    }
+
+    private LoadBatch getLoadBathc() {
+        return new LoadBatch(PROVIDER_DEFAULT, getRecordsList().size(), getRecordsList());
     }
 
     private List<Record> getRecordsList() {
@@ -63,9 +67,9 @@ public class DataProviderServiceImplTest {
 
     @Test
     public void whenExistsProvider_thenGetNumberRecords() {
-        TotalRecordsDTO dto = dataProviderService.getTotalRecords(PROVIDER_DEFAULT);
+        LoadBatch dto = dataProviderService.getTotalRecords(PROVIDER_DEFAULT);
 
-        assert (dto.getTotalRecords() == getRecordsList().size());
+        assert (dto.getTotal() == getRecordsList().size());
     }
 
     @Test(expected = SpartaNotFoundException.class)

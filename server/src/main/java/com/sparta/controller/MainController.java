@@ -1,6 +1,6 @@
 package com.sparta.controller;
 
-import com.sparta.model.dto.TotalRecordsDTO;
+import com.sparta.model.LoadBatch;
 import com.sparta.service.DataProviderService;
 import com.sparta.service.LoadProviderService;
 import lombok.AllArgsConstructor;
@@ -15,13 +15,13 @@ public class MainController {
     private final DataProviderService dataProviderService;
 
     @PostMapping("/load/{provider}")
-    public ResponseEntity<TotalRecordsDTO> load(@PathVariable("provider") String provider, @RequestBody byte[] content) throws Exception {
+    public ResponseEntity<LoadBatch> load(@PathVariable("provider") String provider, @RequestBody byte[] content) throws Exception {
         return ResponseEntity.ok(loadProviderService.save(provider, content));
     }
 
     @GetMapping("/data/{provider}/total")
-    public ResponseEntity<TotalRecordsDTO> total(@PathVariable("provider") String provider) {
-        return ResponseEntity.ok(dataProviderService.getTotalRecords(provider));
+    public ResponseEntity<Long> total(@PathVariable("provider") String provider) {
+        return ResponseEntity.ok(dataProviderService.getTotalRecords(provider).getTotal());
     }
 
 }
