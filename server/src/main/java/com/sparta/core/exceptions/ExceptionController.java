@@ -22,4 +22,9 @@ public class ExceptionController {
     public SpartaError handleSpartaException(SpartaException ex) {
         return SpartaErrorFactory.newInstance(ex.getMessage());
     }
+
+    @ExceptionHandler(ChecksumCRC32Exception.class)
+    public SpartaError handleChecksumCRC32Exception(ChecksumCRC32Exception ex) {
+        return SpartaErrorFactory.newInstance(ex.getMessage());
+    }
 }

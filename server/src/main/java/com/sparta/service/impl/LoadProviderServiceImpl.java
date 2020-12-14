@@ -17,10 +17,12 @@ public class LoadProviderServiceImpl implements LoadProviderService {
     private final ProviderRespository providerRespository;
 
     @Override
-    public LoadBatch save(String provider, byte[] content) {
+    public Long save(String provider, byte[] content) {
         try {
-
-            return providerRespository.save(ProviderDeserializer.deserializer(content));
+            LoadBatch loadBatch = ProviderDeserializer.deserializer(provider, content);
+            long total = loadBatch.getTotal();
+            providerRespository.save(loadBatch);
+            return total;
         } catch (Exception e) {
             throw new SpartaException(e.getMessage());
         }

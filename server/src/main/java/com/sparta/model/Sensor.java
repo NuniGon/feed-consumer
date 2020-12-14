@@ -12,6 +12,4 @@ public class Sensor {
     private String id;
 
     private int measure;
-
-
 }

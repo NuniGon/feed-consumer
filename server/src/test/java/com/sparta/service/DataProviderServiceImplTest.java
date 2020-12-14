@@ -45,11 +45,11 @@ public class DataProviderServiceImplTest {
 
     private List<Record> getRecordsList() {
         List<Sensor> sensors = getSensorList();
-        Record r1 = new Record(1, Instant.now(), "tenerife", sensors);
-        Record r2 = new Record(2, Instant.now(), "barcelona", sensors);
-        Record r3 = new Record(3, Instant.now(), "paris", sensors);
-        Record r4 = new Record(4, Instant.now(), "londres", sensors);
-        Record r5 = new Record(5, Instant.now(), "ginebra", sensors);
+        Record r1 = new Record(1, Instant.now().toEpochMilli(), "tenerife", sensors);
+        Record r2 = new Record(2, Instant.now().toEpochMilli(), "barcelona", sensors);
+        Record r3 = new Record(3, Instant.now().toEpochMilli(), "paris", sensors);
+        Record r4 = new Record(4, Instant.now().toEpochMilli(), "londres", sensors);
+        Record r5 = new Record(5, Instant.now().toEpochMilli(), "ginebra", sensors);
 
         return Arrays.asList(r1, r2, r3, r4, r5);
     }
